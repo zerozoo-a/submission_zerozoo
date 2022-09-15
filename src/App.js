@@ -3,8 +3,6 @@ import { Suspense } from "react";
 import graphql from "babel-plugin-relay/macro";
 import {
   RelayEnvironmentProvider,
-  loadQuery,
-  usePreloadedQuery,
 } from "react-relay/hooks";
 import RelayEnvironment from "./RelayEnvironment";
 import { ErrorBoundary } from "react-error-boundary";
