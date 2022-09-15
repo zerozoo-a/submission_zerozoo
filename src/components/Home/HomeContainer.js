@@ -5,11 +5,12 @@ import RelayEnvironment from "../../RelayEnvironment";
 import {Home} from "./Home";
 import {RepositoryIdQuery} from "./Home.graphql";
 
-
 const preloadedQuery = loadQuery(RelayEnvironment,RepositoryIdQuery)
 
+/** render as you fetch */
 export const HomeContainer = (props) => {
-    const [queryReference,loadQuery,] = useQueryLoader(RepositoryIdQuery,props.preloadedQuery)
+    const [queryReference,loadQuery] = useQueryLoader(RepositoryIdQuery,props.preloadedQuery)
+
     if(queryReference===null){
         return (
             <>
