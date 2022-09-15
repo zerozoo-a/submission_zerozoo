@@ -7,7 +7,7 @@ import {
 import RelayEnvironment from "./RelayEnvironment";
 import { ErrorBoundary } from "react-error-boundary";
 
-import { HomeContainer} from "./components/Home/HomeContainer";
+import { HomeContainer} from "./components/Home/Home.Container";
 
 
 const App = () => {

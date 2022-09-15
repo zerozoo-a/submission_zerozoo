@@ -4,6 +4,7 @@ import {loadQuery} from "react-relay/hooks";
 import RelayEnvironment from "../../RelayEnvironment";
 import {Home} from "./Home";
 import {RepositoryIdQuery} from "./Home.graphql";
+import {SearchContainer} from "../Search/Search.Container";
 
 const preloadedQuery = loadQuery(RelayEnvironment,RepositoryIdQuery)
 
@@ -36,6 +37,7 @@ export const HomeContainer = (props) => {
                     preloadedQuery={preloadedQuery}
                     queryReference={queryReference}
                 />
+                <SearchContainer />
             </Suspense>
         </>
     )
