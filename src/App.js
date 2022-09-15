@@ -9,27 +9,15 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import { HomeContainer} from "./components/Home/HomeContainer";
 
-const RepositoryNameQuery = graphql`
-  query AppRepositoryNameQuery {
-    repository(owner: "facebook", name: "relay") {
-      name
-    }
-  }
-`;
 
-
-const App = (props) => {
-  // const data = usePreloadedQuery(RepositoryNameQuery, props.preloadedQuery);
-
+const App = () => {
   return (
     <div className="App">
-      {/*{data.repository.name}*/}
       <HomeContainer />
     </div>
   );
 }
 
-// const preloadedQuery = loadQuery(RelayEnvironment, RepositoryNameQuery, {});
 const AppRoot = () => {
   return (
     <RelayEnvironmentProvider environment={RelayEnvironment}>
