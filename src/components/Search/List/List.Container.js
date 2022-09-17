@@ -1,15 +1,13 @@
-import { Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { usePreloadedQuery, useQueryLoader } from "react-relay";
 import { SearchMoreQuery, SearchQuery } from "../Search.graphql";
 import { List, MoreList } from "./List";
 
 export const ListContainer = ({ query, queryReference }) => {
   const data = usePreloadedQuery(SearchQuery, queryReference);
-
   const [searchMoreQueryReference, loadSearchMoreQuery] =
     useQueryLoader(SearchMoreQuery);
 
-  console.log("data outer >>>", data);
   const {
     search: {
       edges,
@@ -17,31 +15,42 @@ export const ListContainer = ({ query, queryReference }) => {
       pageInfo: { endCursor, hasNextPage },
     },
   } = data;
+  const [newEndCursor, setNewCursor] = useState(endCursor);
 
-  const handleOnClick = (e) => {
+  const handleOnClick = (e, endCursor) => {
     e.preventDefault();
     loadSearchMoreQuery({ query, after: endCursor });
   };
+
+  const handleSetNewCursor = (endCursor) => {
+    setNewCursor(endCursor);
+  };
+
+  // useEffect(()=>{
+  //
+  // },[newEndCursor])
 
   return (
     <div>
       <List edges={edges} />
       <Suspense fallback={"LOADING..."}>
         {searchMoreQueryReference !== null && (
-          <MoreList searchMoreQueryReference={searchMoreQueryReference} />
+          <MoreList
+            searchMoreQueryReference={searchMoreQueryReference}
+            handleSetNewCursor={handleSetNewCursor}
+          />
         )}
       </Suspense>
-      {hasNextPage && (
-        <SearchMoreButton
-          handleOnClick={handleOnClick}
-          hasNextPage={hasNextPage}
-        />
-      )}
+
+      <SearchMoreButton
+        handleOnClick={(e) => handleOnClick(e, newEndCursor)}
+        hasNextPage={hasNextPage}
+      />
     </div>
   );
 };
 
-const SearchMoreButton = ({ hasNextPage, handleOnClick }) => {
+export const SearchMoreButton = ({ handleOnClick, hasNextPage }) => {
   return (
     <>
       <button onClick={handleOnClick} disabled={!hasNextPage}>

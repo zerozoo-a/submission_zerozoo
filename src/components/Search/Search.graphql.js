@@ -1,5 +1,14 @@
 import graphql from "babel-plugin-relay/macro";
 
+export const searchFragment = graphql`
+  fragment SearchContainer_repository on Repository {
+    id
+    name
+    description
+    stargazerCount
+  }
+`;
+
 export const SearchQuery = graphql`
   query SearchQuery($query: String = "") {
     search(type: REPOSITORY, query: $query, first: 1) {
