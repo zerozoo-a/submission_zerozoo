@@ -1,36 +1,45 @@
-import {Search} from './Search'
-import {useRelayEnvironment, useLazyLoadQuery, loadQuery, useQueryLoader,usePreloadedQuery} from "react-relay";
-import {SearchQuery} from "./Search.graphql";
-import {Suspense} from "react";
+import { useQueryLoader } from "react-relay";
+import { SearchQuery } from "./Search.graphql";
+import { useState, Suspense } from "react";
+import { List } from "./List";
+import { Input } from "./Input";
 
+export const SearchContainer = () => {
+  const [queryReference, loadQuery] = useQueryLoader(SearchQuery);
+  const [query, setQuery] = useState("");
 
-export const SearchContainer = (props) => {
-    const data = useLazyLoadQuery(SearchQuery,{query:"그린랩스"},{})
-    const environment = useRelayEnvironment();
-    // const queryReference = loadQuery(
-    //     environment,
-    //     SearchQuery,
-    //     {query:"그린랩스"},
-    //     {}
-    // )
-    const [queryReference, loadQuery] = useQueryLoader(SearchQuery,props.searchRef)
+  const handleOnChange = ({ target: { value } }) => {
+    setQuery(value);
+  };
+  const handleOnClick = (e) => {
+    e.preventDefault();
+    loadQuery({ query });
+  };
 
+  return (
+    <>
+      <Input handleOnClick={handleOnClick} handleOnChange={handleOnChange} />
 
-    return (<>
-        <button
-            onClick={()=>loadQuery({query:"그린랩스"})}
-            disabled={queryReference !== null}
-        >btn</button>
+      <Suspense fallback={"LOADING..."}>
+        {queryReference !== null && <List queryReference={queryReference} />}
+      </Suspense>
+    </>
+  );
+};
 
-        <Suspense fallback={"LOADING..."}>
-            {queryReference != null ? <div>success! <Hello queryReference={queryReference}/></div> : <div>something wrong</div>}
-        </Suspense>
-    </>)
+{
+  /*const Hello = ({ queryReference }) => {*/
+}
+{
+  /*  const data = usePreloadedQuery(SearchQuery, queryReference);*/
+}
+{
+  /*  console.log("data >>>", data);*/
 }
 
-const Hello = ({queryReference}) => {
-    const data = usePreloadedQuery(SearchQuery, queryReference)
-    console.log('data >>>', data)
-
-    return <h1>Hello</h1>
+{
+  /*  return <h1>Hello</h1>;*/
+}
+{
+  /*};*/
 }
