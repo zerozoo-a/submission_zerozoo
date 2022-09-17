@@ -25,7 +25,7 @@ export const SearchQuery = graphql`
 
 export const SearchMoreQuery = graphql`
   query SearchMoreQuery($query: String = "", $after: String = "") {
-    search(type: REPOSITORY, query: $query, first: 1, after: $after) {
+    search(type: REPOSITORY, first: 1, query: $query, after: $after) {
       edges {
         node {
           ... on Repository {

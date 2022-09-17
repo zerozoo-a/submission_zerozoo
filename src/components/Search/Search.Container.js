@@ -1,7 +1,7 @@
 import { useQueryLoader } from "react-relay";
 import { SearchQuery } from "./Search.graphql";
 import { useState, Suspense } from "react";
-import { List } from "./List";
+import { ListContainer } from "./List/List.Container";
 import { Input } from "./Input";
 
 export const SearchContainer = () => {
@@ -20,7 +20,9 @@ export const SearchContainer = () => {
     <>
       <Input handleOnClick={handleOnClick} handleOnChange={handleOnChange} />
       <Suspense fallback={"LOADING..."}>
-        {queryReference !== null && <List queryReference={queryReference} />}
+        {queryReference !== null && (
+          <ListContainer query={query} queryReference={queryReference} />
+        )}
       </Suspense>
     </>
   );

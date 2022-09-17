@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2e2dc87f1826cb2859b133d6c008bae7>>
+ * @generated SignedSource<<296d9937c319064de7d2607026eb868b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -231,16 +231,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "275b422687bd75230dc55f12bfe98ed4",
+    "cacheID": "e522b62899cbc19ecabf69e528585156",
     "id": null,
     "metadata": {},
     "name": "SearchMoreQuery",
     "operationKind": "query",
-    "text": "query SearchMoreQuery(\n  $query: String = \"\"\n  $after: String = \"\"\n) {\n  search(type: REPOSITORY, query: $query, first: 1, after: $after) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          description\n          stargazerCount\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n    repositoryCount\n  }\n}\n"
+    "text": "query SearchMoreQuery(\n  $query: String = \"\"\n  $after: String = \"\"\n) {\n  search(type: REPOSITORY, first: 1, query: $query, after: $after) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          description\n          stargazerCount\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n    repositoryCount\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "02953f386eeb103310fb194cc42323a7";
+node.hash = "c93ab7701376542a280fadac84e9c497";
 
 module.exports = node;
