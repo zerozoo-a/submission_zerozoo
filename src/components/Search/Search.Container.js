@@ -19,27 +19,9 @@ export const SearchContainer = () => {
   return (
     <>
       <Input handleOnClick={handleOnClick} handleOnChange={handleOnChange} />
-
       <Suspense fallback={"LOADING..."}>
         {queryReference !== null && <List queryReference={queryReference} />}
       </Suspense>
     </>
   );
 };
-
-{
-  /*const Hello = ({ queryReference }) => {*/
-}
-{
-  /*  const data = usePreloadedQuery(SearchQuery, queryReference);*/
-}
-{
-  /*  console.log("data >>>", data);*/
-}
-
-{
-  /*  return <h1>Hello</h1>;*/
-}
-{
-  /*};*/
-}

@@ -3,7 +3,6 @@ import { SearchQuery } from "./Search.graphql";
 
 export const List = ({ queryReference }) => {
   const data = usePreloadedQuery(SearchQuery, queryReference);
-  console.log("data >>>", data);
 
   return (
     <div>
