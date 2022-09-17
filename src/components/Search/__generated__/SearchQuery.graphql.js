@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ba7cb54a18d5f5eac9aadcd4c1f4c245>>
+ * @generated SignedSource<<1a1acb3ef8eadff1c808a45c624c3957>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 var node = (function(){
 var v0 = [
   {
-    "defaultValue": "그린랩스",
+    "defaultValue": "",
     "kind": "LocalArgument",
     "name": "query"
   }
@@ -217,16 +217,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "4f4e704c5c5c00dad75243196c7fe902",
+    "cacheID": "4516b26a63e98a3e3684f05f0655f0b1",
     "id": null,
     "metadata": {},
     "name": "SearchQuery",
     "operationKind": "query",
-    "text": "query SearchQuery(\n  $query: String = \"그린랩스\"\n) {\n  search(type: REPOSITORY, query: $query, first: 1) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          description\n          stargazerCount\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n    repositoryCount\n  }\n}\n"
+    "text": "query SearchQuery(\n  $query: String = \"\"\n) {\n  search(type: REPOSITORY, query: $query, first: 1) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          description\n          stargazerCount\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n    repositoryCount\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "dcf8054e989fc799dc8da1298394cc58";
+node.hash = "2554351eebed7fea604cc2032f48ed3b";
 
 module.exports = node;
