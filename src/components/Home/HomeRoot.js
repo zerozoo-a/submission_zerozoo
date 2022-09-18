@@ -1,4 +1,8 @@
-import { useFragment, usePreloadedQuery } from "react-relay";
+import {
+  useFragment,
+  usePaginationFragment,
+  usePreloadedQuery,
+} from "react-relay";
 import graphql from "babel-plugin-relay/macro";
 
 export default function HomeRoot(props) {
@@ -22,15 +26,17 @@ export default function HomeRoot(props) {
     <div>
       <h2>hello home root</h2>
       <div>
-        {nodes.map((node, index) => (
-          <HomeRootFragment nodes={node} index={index} />
-        ))}
+        {/*{nodes.map((node, index) => (*/}
+        {/*  <div key={`${props.node.__id}`}>*/}
+        {/*    <HomeRootFragment node={node} index={index} />*/}
+        {/*  </div>*/}
+        {/*))}*/}
       </div>
     </div>
   );
 }
 
-function HomeRootFragment(props) {
+export function HomeSearchFragment(props) {
   const data = useFragment(
     graphql`
       fragment HomeRootSearchFragmentQuery on Repository {
@@ -38,14 +44,13 @@ function HomeRootFragment(props) {
         description
       }
     `,
-    props.nodes
+    props.node
   );
-
   const { name, description } = data;
   return (
-    <div key={`node__${props.index}`}>
+    <>
       <div>{name}</div>
       <div>{description}</div>
-    </div>
+    </>
   );
 }

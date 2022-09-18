@@ -3,6 +3,7 @@ import HomeRoot from "./HomeRoot";
 import { loadQuery } from "react-relay/hooks";
 import RelayEnvironment from "../../RelayEnvironment";
 import HomeRootQuery from "./__generated__/HomeRootSearchQuery.graphql";
+import { Search } from "./Search";
 
 const HomeRootQueryRef = loadQuery(RelayEnvironment, HomeRootQuery, {
   query: "react",
@@ -11,8 +12,8 @@ const HomeRootQueryRef = loadQuery(RelayEnvironment, HomeRootQuery, {
 export const HomeContainer = () => {
   return (
     <>
-      <HomeRoot prepare={HomeRootQueryRef} />
-      {/*<SearchContainer />*/}
+      <Search />
+      {/*<HomeRoot prepare={HomeRootQueryRef} />*/}
     </>
   );
 };
