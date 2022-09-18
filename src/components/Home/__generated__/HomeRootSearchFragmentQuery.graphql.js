@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<22d4efe9ec49a35f515b4eeb80affdde>>
+ * @generated SignedSource<<3ba7bd37e314e7d5af0638580453ff76>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -27,12 +27,19 @@ var node = {
       "kind": "ScalarField",
       "name": "description",
       "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "stargazerCount",
+      "storageKey": null
     }
   ],
   "type": "Repository",
   "abstractKey": null
 };
 
-node.hash = "5b476e10831273f92ef7345ad339d8e6";
+node.hash = "a5d50b4c08737469cdaab8f543db4860";
 
 module.exports = node;

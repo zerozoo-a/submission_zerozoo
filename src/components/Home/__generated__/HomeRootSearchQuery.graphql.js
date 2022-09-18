@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b42f16ea248bb5f128d968ffc2a2acb5>>
+ * @generated SignedSource<<e8692b08b7b0b4d5451925323a3f7d3c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 var node = (function(){
 var v0 = [
   {
-    "defaultValue": "react",
+    "defaultValue": "그린랩스",
     "kind": "LocalArgument",
     "name": "query"
   }
@@ -32,7 +32,32 @@ v1 = [
     "name": "type",
     "value": "REPOSITORY"
   }
-];
+],
+v2 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "PageInfo",
+  "kind": "LinkedField",
+  "name": "pageInfo",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "hasNextPage",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "endCursor",
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -63,7 +88,8 @@ return {
               }
             ],
             "storageKey": null
-          }
+          },
+          (v2/*: any*/)
         ],
         "storageKey": null
       }
@@ -116,6 +142,13 @@ return {
                     "kind": "ScalarField",
                     "name": "description",
                     "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "stargazerCount",
+                    "storageKey": null
                   }
                 ],
                 "type": "Repository",
@@ -137,23 +170,24 @@ return {
               }
             ],
             "storageKey": null
-          }
+          },
+          (v2/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "9c804708859b13b2b3c1fac11c1907ea",
+    "cacheID": "a41f74c5971bba29611ae0c46357364c",
     "id": null,
     "metadata": {},
     "name": "HomeRootSearchQuery",
     "operationKind": "query",
-    "text": "query HomeRootSearchQuery(\n  $query: String = \"react\"\n) {\n  search(query: $query, type: REPOSITORY, first: 10) {\n    nodes {\n      __typename\n      ...HomeRootSearchFragmentQuery\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n  }\n}\n\nfragment HomeRootSearchFragmentQuery on Repository {\n  name\n  description\n}\n"
+    "text": "query HomeRootSearchQuery(\n  $query: String = \"그린랩스\"\n) {\n  search(query: $query, type: REPOSITORY, first: 10) {\n    nodes {\n      __typename\n      ...HomeRootSearchFragmentQuery\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment HomeRootSearchFragmentQuery on Repository {\n  name\n  description\n  stargazerCount\n}\n"
   }
 };
 })();
 
-node.hash = "42274652873857edff1166a0e69a6ec5";
+node.hash = "403cce3d7ce4b047649febaa1722b7db";
 
 module.exports = node;

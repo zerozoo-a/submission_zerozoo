@@ -33,7 +33,7 @@ export const SearchQuery = graphql`
 `;
 
 export const SearchMoreQuery = graphql`
-  query SearchMoreQuery($query: String = "", $after: String = "") {
+  query SearchFFMoreQuery($query: String = "", $after: String = "") {
     search(type: REPOSITORY, first: 1, query: $query, after: $after) {
       edges {
         node {

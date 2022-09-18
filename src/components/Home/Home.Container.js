@@ -6,14 +6,14 @@ import HomeRootQuery from "./__generated__/HomeRootSearchQuery.graphql";
 import { Search } from "./Search";
 
 const HomeRootQueryRef = loadQuery(RelayEnvironment, HomeRootQuery, {
-  query: "react",
+  query: "그린랩스",
 });
 
 export const HomeContainer = () => {
   return (
     <>
-      <Search />
-      {/*<HomeRoot prepare={HomeRootQueryRef} />*/}
+      <HomeRoot prepare={HomeRootQueryRef} />
+      {/*<Search />*/}
     </>
   );
 };
