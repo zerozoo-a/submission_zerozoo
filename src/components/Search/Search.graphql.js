@@ -54,3 +54,50 @@ export const SearchMoreQuery = graphql`
     }
   }
 `;
+
+export const SearchQueryWithFragment = graphql`
+  query SearchQueryWithFragmentQuery($query: String = "react") {
+    search(type: REPOSITORY, query: $query, first: 1) {
+      ...SearchResultItemConnectionFragment
+    }
+  }
+`;
+export const FragmentForSearch = graphql`
+  fragment SearchResultItemConnectionFragment on SearchResultItemConnection {
+    edges {
+      node {
+        ... on Repository {
+          id
+          name
+          description
+          stargazerCount
+        }
+      }
+    }
+  }
+`;
+
+// export const searchRelayQuery = graphql`
+//   query SearchRelayQuery {
+//     relay {
+//       ...SearchQueryFragment
+//     }
+//   }
+// `;
+
+export const searchRelayFragment = graphql`
+  fragment SearchQueryFragment on Query {
+    search(query: "react", type: REPOSITORY, first: 1) {
+      edges {
+        node {
+          ... on Repository {
+            id
+            name
+            description
+            stargazerCount
+          }
+        }
+      }
+    }
+  }
+`;
