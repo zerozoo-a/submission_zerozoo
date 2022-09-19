@@ -83,10 +83,6 @@ function SpreadEdges({ edges }) {
     SearchRemoveStarMutation
   );
 
-  function returnCommitProps(starrableId) {
-    return {};
-  }
-
   const handleOnClick = (starrableId, viewerHasStarred) => {
     setSelectedRepoId(starrableId);
 
