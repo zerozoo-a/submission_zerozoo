@@ -103,7 +103,10 @@ function SearchRepoResults({ searchQuery, searchRef }) {
           />
         </div>
       </form>
-      <SpreadEdges edges={edges} />
+      <div className={"pt-12 "} />
+      <div className={"divide-y divide-solid"}>
+        <SpreadEdges edges={edges} />
+      </div>
       <button disabled={isLoadingNext || !hasNext} onClick={loadMore}>
         {hasNext ? "더 보기" : "더 이상의 데이터가 없습니다."}
       </button>
@@ -162,15 +165,18 @@ function SpreadEdges({ edges }) {
     } = edge;
 
     return (
-      <div key={`index__${index}__cursor__${cursor}`}>
+      <div className={"pb-7"} key={`index__${index}__cursor__${cursor}`}>
         <div>
-          <div>{name}</div>
+          <div className={"font-bold"}>{name}</div>
           <div>{description}</div>
           {(isInFlightToRemoveStar || isInFlightToAddStar) &&
           selectedRepoId === id ? (
             <Loading />
           ) : (
-            <button onClick={() => handleOnClick(id, viewerHasStarred)}>
+            <button
+              className={buttonStyle(viewerHasStarred)}
+              onClick={() => handleOnClick(id, viewerHasStarred)}
+            >
               ⭐️{stargazerCount} {!viewerHasStarred ? "별 주기!" : "별 취소"}
             </button>
           )}
@@ -179,3 +185,12 @@ function SpreadEdges({ edges }) {
     );
   });
 }
+
+const buttonStyle = (viewerHasStarred) => `
+ ${
+   viewerHasStarred
+     ? "text-white bg-green-700 dark:bg-green-600"
+     : "text-gray-800 bg-gray-400 dark:bg-gray-300"
+ } 
+hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2  dark:hover:bg-green-700 dark:focus:ring-green-800
+`;
