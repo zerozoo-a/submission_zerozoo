@@ -1,3 +1,4 @@
+/* @flow */
 import {
   useMutation,
   usePaginationFragment,
@@ -5,17 +6,29 @@ import {
   useQueryLoader,
 } from "react-relay";
 import { Suspense, useCallback, useEffect, useState } from "react";
+
+/** queries */
 import SearchRepoQuery from "./__generated__/SearchRepoQuery.graphql";
 import SearchRepoFragment from "./__generated__/SearchRepoResults_repos.graphql";
 import SearchAddStarMutation from "./__generated__/SearchAddStarMutation.graphql";
 import SearchRemoveStarMutation from "./__generated__/SearchRemoveStarMutation.graphql";
+
+/** types */
+import type { SearchRepoQueryType } from "SearchRepoQuery.graphql";
+import type { PreloadedQuery } from "react-relay";
+
+type Props = {
+  searchRef: PreloadedQuery<SearchRepoQueryType>,
+  searchQuery: SearchRepoQueryType,
+};
 
 export function Loading() {
   return <p>Loading...🐢</p>;
 }
 
 export function Search() {
-  const [queryRef, loadQuery, disposeQuery] = useQueryLoader(SearchRepoQuery);
+  const [queryRef, loadQuery, disposeQuery] =
+    useQueryLoader<SearchRepoQueryType>(SearchRepoQuery);
 
   /** loadQuery 초기화, disposeQuery로 cleanup */
   useEffect(() => {
@@ -26,8 +39,8 @@ export function Search() {
   }, [disposeQuery, loadQuery]);
 
   return (
-    <div>
-      <h2>Search!</h2>
+    <div className={"prose lg:prose-xl"}>
+      <h2 className={"divide-x"}>Search Github Repository</h2>
       {queryRef && (
         <Suspense fallback={<Loading />}>
           <SearchRepoResults
@@ -63,10 +76,32 @@ function SearchRepoResults({ searchQuery, searchRef }) {
   } = data;
 
   return (
-    <div>
+    <div className={"bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"}>
       <form onSubmit={handleOnSubmit}>
-        <input type="text" onChange={(e) => setSearch(e.target.value)} />
-        <input type="submit" />
+        <div className={"mb-4"}>
+          <label
+            className={"text-gray-700 text-sm font-bold mb-2 text-lg"}
+            htmlFor={"searchGitHubRepository"}
+          >
+            검색 🔍
+          </label>
+        </div>
+        <div className={"h-38px"}>
+          <input
+            id={"searchGitHubRepository"}
+            type="text"
+            className={
+              "shadow appearance-none w-4/6 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            }
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <input
+            className={
+              "shadow appearance-none border rounded  hover:cursor-pointer py-1 px-3 text-gray-700 rounded bg-gray-200 "
+            }
+            type="submit"
+          />
+        </div>
       </form>
       <SpreadEdges edges={edges} />
       <button disabled={isLoadingNext || !hasNext} onClick={loadMore}>

@@ -1,4 +1,3 @@
-import "./App.css";
 import { RelayEnvironmentProvider } from "react-relay/hooks";
 import RelayEnvironment from "./RelayEnvironment";
 import { ErrorBoundary } from "react-error-boundary";
@@ -7,7 +6,7 @@ import { Search } from "./components/Home/Search";
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="flex justify-center">
       <Search />
     </div>
   );
