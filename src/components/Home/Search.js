@@ -23,7 +23,7 @@ export function Search() {
     return () => {
       disposeQuery();
     };
-  }, []);
+  }, [disposeQuery, loadQuery]);
 
   return (
     <div>
@@ -42,8 +42,10 @@ export function Search() {
 
 function SearchRepoResults({ searchQuery, searchRef }) {
   const query = usePreloadedQuery(searchQuery, searchRef);
+
   const { data, loadNext, isLoadingNext, refetch, hasNext } =
     usePaginationFragment(SearchRepoFragment, query);
+
   const [search, setSearch] = useState("");
 
   const loadMore = useCallback(() => {

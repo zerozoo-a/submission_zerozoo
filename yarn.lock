@@ -78,7 +78,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.1.0, @babel/core@npm:^7.11.1, @babel/core@npm:^7.12.3, @babel/core@npm:^7.16.0, @babel/core@npm:^7.19.0, @babel/core@npm:^7.7.2, @babel/core@npm:^7.8.0":
+"@babel/core@npm:^7.1.0, @babel/core@npm:^7.11.1, @babel/core@npm:^7.12.3, @babel/core@npm:^7.16.0, @babel/core@npm:^7.19.1, @babel/core@npm:^7.7.2, @babel/core@npm:^7.8.0":
   version: 7.19.1
   resolution: "@babel/core@npm:7.19.1"
   dependencies:
@@ -6119,6 +6119,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-relay@npm:^1.8.3":
+  version: 1.8.3
+  resolution: "eslint-plugin-relay@npm:1.8.3"
+  dependencies:
+    graphql: ^14.0.0 || ^15.0.0
+  checksum: 1e7e3df3eaa230c489050973650b48ce8c05e87cbe54eb9b09320fa2d9767ed65d07e217f6defdd7380eee847b474c6adc8ec59840357b4c8c6b452df1eb4aa5
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-testing-library@npm:^5.0.1":
   version: 5.6.4
   resolution: "eslint-plugin-testing-library@npm:5.6.4"
@@ -7089,6 +7098,13 @@ __metadata:
   version: 15.3.0
   resolution: "graphql@npm:15.3.0"
   checksum: df18079e3a1ecb875821a71531b74eb1e6099ec1fb8d6e79faff4b43561cb23acbb80c9e05845292e08b6321d507e55dc7d5a60d72cdd093720a6f0f00983d1e
+  languageName: node
+  linkType: hard
+
+"graphql@npm:^14.0.0 || ^15.0.0":
+  version: 15.8.0
+  resolution: "graphql@npm:15.8.0"
+  checksum: 423325271db8858428641b9aca01699283d1fe5b40ef6d4ac622569ecca927019fce8196208b91dd1d8eb8114f00263fe661d241d0eb40c10e5bfd650f86ec5e
   languageName: node
   linkType: hard
 
@@ -11527,7 +11543,7 @@ __metadata:
   resolution: "relay-app@workspace:."
   dependencies:
     "@babel/cli": ^7.18.10
-    "@babel/core": ^7.19.0
+    "@babel/core": ^7.19.1
     "@babel/node": ^7.14.2
     "@babel/plugin-proposal-class-properties": ^7.12.1
     "@babel/plugin-transform-runtime": ^7.14.3
@@ -11541,6 +11557,7 @@ __metadata:
     "@types/react-relay": ^14.1.1
     babel-plugin-relay: ^14.1.0
     eslint-plugin-flowtype: ^5.7.2
+    eslint-plugin-relay: ^1.8.3
     flow-bin: ^0.187.0
     flow-typed: latest
     react: ^18.2.0
