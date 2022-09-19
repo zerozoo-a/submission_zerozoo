@@ -13,7 +13,7 @@ export const fragment = graphql`
     first: { type: "Int", defaultValue: 5 }
     before: { type: "String" }
     last: { type: "Int" }
-    query: { type: "String", defaultValue: "react" }
+    query: { type: "String", defaultValue: "" }
     type: { type: "SearchType", defaultValue: REPOSITORY }
   )
   @refetchable(queryName: "SearchPaginationQuery") {
@@ -33,6 +33,9 @@ export const fragment = graphql`
             stargazerCount
           }
         }
+      }
+      pageInfo {
+        hasNextPage
       }
     }
   }

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2dac0d16501e640c61a6a6f9410b784b>>
+ * @generated SignedSource<<d4591cf82e821ca45bd2a23bb102d526>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -18,7 +18,7 @@ var v0 = [
   {
     "kind": "Literal",
     "name": "query",
-    "value": "react"
+    "value": ""
   },
   {
     "kind": "Literal",
@@ -146,14 +146,14 @@ return {
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
-                "name": "endCursor",
+                "name": "hasNextPage",
                 "storageKey": null
               },
               {
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
-                "name": "hasNextPage",
+                "name": "endCursor",
                 "storageKey": null
               },
               {
@@ -174,7 +174,7 @@ return {
             "storageKey": null
           }
         ],
-        "storageKey": "search(first:5,query:\"react\",type:\"REPOSITORY\")"
+        "storageKey": "search(first:5,query:\"\",type:\"REPOSITORY\")"
       },
       {
         "alias": null,
@@ -191,12 +191,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "412ba6a9810f6fb6866c26d20bdc5d6a",
+    "cacheID": "a5b50121728ba38f02776e3437f984fa",
     "id": null,
     "metadata": {},
     "name": "SearchRepoQuery",
     "operationKind": "query",
-    "text": "query SearchRepoQuery {\n  ...SearchRepoResults_repos\n}\n\nfragment SearchRepoResults_repos on Query {\n  search(query: \"react\", first: 5, type: REPOSITORY) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          name\n          description\n          stargazerCount\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
+    "text": "query SearchRepoQuery {\n  ...SearchRepoResults_repos\n}\n\nfragment SearchRepoResults_repos on Query {\n  search(query: \"\", first: 5, type: REPOSITORY) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          name\n          description\n          stargazerCount\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
   }
 };
 })();

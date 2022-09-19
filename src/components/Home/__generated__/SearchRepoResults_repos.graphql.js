@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2e00360d5d118919db49158035ae32d0>>
+ * @generated SignedSource<<0af04e9d052fb86a1f6786b9dabdc49c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -35,7 +35,7 @@ return {
       "name": "last"
     },
     {
-      "defaultValue": "react",
+      "defaultValue": "",
       "kind": "LocalArgument",
       "name": "query"
     },
@@ -168,14 +168,14 @@ return {
               "alias": null,
               "args": null,
               "kind": "ScalarField",
-              "name": "endCursor",
+              "name": "hasNextPage",
               "storageKey": null
             },
             {
               "alias": null,
               "args": null,
               "kind": "ScalarField",
-              "name": "hasNextPage",
+              "name": "endCursor",
               "storageKey": null
             },
             {
@@ -204,6 +204,6 @@ return {
 };
 })();
 
-node.hash = "07405c84352851ca24104ca47bac8bc7";
+node.hash = "6e6adc103f72034259aa688da6274c6c";
 
 module.exports = node;

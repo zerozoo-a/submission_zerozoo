@@ -9,13 +9,8 @@ import SearchRepoFragment from "./__generated__/SearchRepoResults_repos.graphql"
 
 export function Search() {
   const [queryRef, loadQuery, disposeQuery] = useQueryLoader(SearchRepoQuery);
-  const [query, setQuery] = useState("");
 
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
-    loadQuery({ query });
-  };
-
+  /** loadQuery 초기화, disposeQuery로 cleanup */
   useEffect(() => {
     loadQuery({});
     return () => {
@@ -26,11 +21,6 @@ export function Search() {
   return (
     <div>
       <h2>Search!</h2>
-      <form onSubmit={handleOnSubmit}>
-        <input type="text" onChange={(e) => setQuery(e.target.value)} />
-        <input type="submit" />
-      </form>
-
       {queryRef && (
         <Suspense fallback={<p>LOADING...</p>}>
           <SearchRepoResults
@@ -45,23 +35,30 @@ export function Search() {
 
 function SearchRepoResults({ searchQuery, searchRef }) {
   const query = usePreloadedQuery(searchQuery, searchRef);
-  const { data, loadNext, isLoadingNext } = usePaginationFragment(
-    SearchRepoFragment,
-    query
-  );
+  const { data, loadNext, isLoadingNext, refetch, hasNext } =
+    usePaginationFragment(SearchRepoFragment, query);
+  const [search, setSearch] = useState("");
 
   const loadMore = useCallback(() => {
     if (isLoadingNext) return;
     loadNext(5);
   }, [isLoadingNext, loadNext]);
 
-  console.log("data >>>", data);
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    refetch({ query: search });
+  };
+
   const {
     search: { edges },
   } = data;
 
   return (
     <div>
+      <form onSubmit={handleOnSubmit}>
+        <input type="text" onChange={(e) => setSearch(e.target.value)} />
+        <input type="submit" />
+      </form>
       {edges.map((edge, index) => {
         const {
           node: { cursor, name, description, stargazerCount },
@@ -76,7 +73,10 @@ function SearchRepoResults({ searchQuery, searchRef }) {
           </div>
         );
       })}
-      <button onClick={loadMore}>LOAD MORE?</button>
+
+      <button disabled={isLoadingNext || !hasNext} onClick={loadMore}>
+        {hasNext ? "더 보기" : "더 이상의 데이터가 없습니다."}
+      </button>
     </div>
   );
 }

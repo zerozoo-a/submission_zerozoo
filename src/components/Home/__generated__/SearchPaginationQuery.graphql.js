@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<38e79990da28255c31961754c49d8c48>>
+ * @generated SignedSource<<be76e3ae48c8526b70752c3bd858e970>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -31,7 +31,7 @@ var v0 = [
     "name": "last"
   },
   {
-    "defaultValue": "react",
+    "defaultValue": "",
     "kind": "LocalArgument",
     "name": "query"
   },
@@ -193,14 +193,14 @@ return {
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
-                "name": "endCursor",
+                "name": "hasNextPage",
                 "storageKey": null
               },
               {
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
-                "name": "hasNextPage",
+                "name": "endCursor",
                 "storageKey": null
               },
               {
@@ -238,16 +238,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "725e6e0546644e8a5c138c2cf9ada4cc",
+    "cacheID": "c647ef5f59558ff16b289f2dc7d9e452",
     "id": null,
     "metadata": {},
     "name": "SearchPaginationQuery",
     "operationKind": "query",
-    "text": "query SearchPaginationQuery(\n  $after: String\n  $before: String\n  $first: Int = 5\n  $last: Int\n  $query: String = \"react\"\n  $type: SearchType = REPOSITORY\n) {\n  ...SearchRepoResults_repos_2O64vi\n}\n\nfragment SearchRepoResults_repos_2O64vi on Query {\n  search(query: $query, after: $after, first: $first, before: $before, last: $last, type: $type) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          name\n          description\n          stargazerCount\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
+    "text": "query SearchPaginationQuery(\n  $after: String\n  $before: String\n  $first: Int = 5\n  $last: Int\n  $query: String = \"\"\n  $type: SearchType = REPOSITORY\n) {\n  ...SearchRepoResults_repos_2O64vi\n}\n\nfragment SearchRepoResults_repos_2O64vi on Query {\n  search(query: $query, after: $after, first: $first, before: $before, last: $last, type: $type) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          name\n          description\n          stargazerCount\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "07405c84352851ca24104ca47bac8bc7";
+node.hash = "6e6adc103f72034259aa688da6274c6c";
 
 module.exports = node;
