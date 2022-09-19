@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<38e79990da28255c31961754c49d8c48>>
+ * @generated SignedSource<<2dac0d16501e640c61a6a6f9410b784b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,77 +11,30 @@
 var node = (function(){
 var v0 = [
   {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "after"
-  },
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "before"
-  },
-  {
-    "defaultValue": 5,
-    "kind": "LocalArgument",
-    "name": "first"
-  },
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "last"
-  },
-  {
-    "defaultValue": "react",
-    "kind": "LocalArgument",
-    "name": "query"
-  },
-  {
-    "defaultValue": "REPOSITORY",
-    "kind": "LocalArgument",
-    "name": "type"
-  }
-],
-v1 = [
-  {
-    "kind": "Variable",
-    "name": "after",
-    "variableName": "after"
-  },
-  {
-    "kind": "Variable",
-    "name": "before",
-    "variableName": "before"
-  },
-  {
-    "kind": "Variable",
+    "kind": "Literal",
     "name": "first",
-    "variableName": "first"
+    "value": 5
   },
   {
-    "kind": "Variable",
-    "name": "last",
-    "variableName": "last"
-  },
-  {
-    "kind": "Variable",
+    "kind": "Literal",
     "name": "query",
-    "variableName": "query"
+    "value": "react"
   },
   {
-    "kind": "Variable",
+    "kind": "Literal",
     "name": "type",
-    "variableName": "type"
+    "value": "REPOSITORY"
   }
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "SearchPaginationQuery",
+    "name": "SearchRepoQuery",
     "selections": [
       {
-        "args": (v1/*: any*/),
+        "args": null,
         "kind": "FragmentSpread",
         "name": "SearchRepoResults_repos"
       }
@@ -91,13 +44,13 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "SearchPaginationQuery",
+    "name": "SearchRepoQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v0/*: any*/),
         "concreteType": "SearchResultItemConnection",
         "kind": "LinkedField",
         "name": "search",
@@ -221,11 +174,11 @@ return {
             "storageKey": null
           }
         ],
-        "storageKey": null
+        "storageKey": "search(first:5,query:\"react\",type:\"REPOSITORY\")"
       },
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v0/*: any*/),
         "filters": [
           "query",
           "type"
@@ -238,16 +191,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "725e6e0546644e8a5c138c2cf9ada4cc",
+    "cacheID": "412ba6a9810f6fb6866c26d20bdc5d6a",
     "id": null,
     "metadata": {},
-    "name": "SearchPaginationQuery",
+    "name": "SearchRepoQuery",
     "operationKind": "query",
-    "text": "query SearchPaginationQuery(\n  $after: String\n  $before: String\n  $first: Int = 5\n  $last: Int\n  $query: String = \"react\"\n  $type: SearchType = REPOSITORY\n) {\n  ...SearchRepoResults_repos_2O64vi\n}\n\nfragment SearchRepoResults_repos_2O64vi on Query {\n  search(query: $query, after: $after, first: $first, before: $before, last: $last, type: $type) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          name\n          description\n          stargazerCount\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
+    "text": "query SearchRepoQuery {\n  ...SearchRepoResults_repos\n}\n\nfragment SearchRepoResults_repos on Query {\n  search(query: \"react\", first: 5, type: REPOSITORY) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          name\n          description\n          stargazerCount\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "07405c84352851ca24104ca47bac8bc7";
+node.hash = "3618c0c458ab7f5e9003ea198ea07401";
 
 module.exports = node;
