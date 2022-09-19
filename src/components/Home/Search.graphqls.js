@@ -1,5 +1,7 @@
 import graphql from "babel-plugin-relay/macro";
 
+/** queries */
+
 export const SearchRepoQuery = graphql`
   query SearchRepoQuery {
     ...SearchRepoResults_repos
@@ -40,3 +42,7 @@ export const fragment = graphql`
     }
   }
 `;
+
+/** mutations */
+
+export const addStarMutation =

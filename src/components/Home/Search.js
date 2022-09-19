@@ -41,7 +41,7 @@ function SearchRepoResults({ searchQuery, searchRef }) {
 
   const loadMore = useCallback(() => {
     if (isLoadingNext) return;
-    loadNext(5);
+    loadNext(5); // 다음 불러들일 데이터의 개수
   }, [isLoadingNext, loadNext]);
 
   const handleOnSubmit = (e) => {
@@ -59,24 +59,27 @@ function SearchRepoResults({ searchQuery, searchRef }) {
         <input type="text" onChange={(e) => setSearch(e.target.value)} />
         <input type="submit" />
       </form>
-      {edges.map((edge, index) => {
-        const {
-          node: { cursor, name, description, stargazerCount },
-        } = edge;
-        return (
-          <div key={`index__${index}__cursor__${cursor}`}>
-            <div>
-              <div>{name}</div>
-              <div>{description}</div>
-              <div>⭐️{stargazerCount}</div>
-            </div>
-          </div>
-        );
-      })}
-
+      <SpreadEdges edges={edges} />
       <button disabled={isLoadingNext || !hasNext} onClick={loadMore}>
         {hasNext ? "더 보기" : "더 이상의 데이터가 없습니다."}
       </button>
     </div>
   );
+}
+
+function SpreadEdges({ edges }) {
+  return edges.map((edge, index) => {
+    const {
+      node: { cursor, name, description, stargazerCount },
+    } = edge;
+    return (
+      <div key={`index__${index}__cursor__${cursor}`}>
+        <div>
+          <div>{name}</div>
+          <div>{description}</div>
+          <div>⭐️{stargazerCount}</div>
+        </div>
+      </div>
+    );
+  });
 }
