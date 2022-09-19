@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d4591cf82e821ca45bd2a23bb102d526>>
+ * @generated SignedSource<<d9ce008861a4d9f4f6ecbc6f0d5e3c7f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -25,7 +25,14 @@ var v0 = [
     "name": "type",
     "value": "REPOSITORY"
   }
-];
+],
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": [],
@@ -82,6 +89,7 @@ return {
                   {
                     "kind": "InlineFragment",
                     "selections": [
+                      (v1/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -102,6 +110,13 @@ return {
                         "kind": "ScalarField",
                         "name": "stargazerCount",
                         "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "viewerHasStarred",
+                        "storageKey": null
                       }
                     ],
                     "type": "Repository",
@@ -110,13 +125,7 @@ return {
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "id",
-                        "storageKey": null
-                      }
+                      (v1/*: any*/)
                     ],
                     "type": "Node",
                     "abstractKey": "__isNode"
@@ -191,12 +200,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "a5b50121728ba38f02776e3437f984fa",
+    "cacheID": "2b466ddc9f0125da189fc9ddbf1d2337",
     "id": null,
     "metadata": {},
     "name": "SearchRepoQuery",
     "operationKind": "query",
-    "text": "query SearchRepoQuery {\n  ...SearchRepoResults_repos\n}\n\nfragment SearchRepoResults_repos on Query {\n  search(query: \"\", first: 5, type: REPOSITORY) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          name\n          description\n          stargazerCount\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
+    "text": "query SearchRepoQuery {\n  ...SearchRepoResults_repos\n}\n\nfragment SearchRepoResults_repos on Query {\n  search(query: \"\", first: 5, type: REPOSITORY) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          description\n          stargazerCount\n          viewerHasStarred\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
   }
 };
 })();

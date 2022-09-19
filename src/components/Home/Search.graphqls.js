@@ -8,7 +8,10 @@ export const SearchRepoQuery = graphql`
   }
 `;
 
-export const fragment = graphql`
+/**
+ * @refetchable(Repo__search) = naming convention
+ * */
+export const SearchRepoResults_repos = graphql`
   fragment SearchRepoResults_repos on Query
   @argumentDefinitions(
     after: { type: "String" }
@@ -30,9 +33,11 @@ export const fragment = graphql`
       edges {
         node {
           ... on Repository {
+            id
             name
             description
             stargazerCount
+            viewerHasStarred
           }
         }
       }
@@ -45,4 +50,29 @@ export const fragment = graphql`
 
 /** mutations */
 
-export const addStarMutation =
+export const SearchAddStarMutation = graphql`
+  mutation SearchAddStarMutation($starrableId: ID = "") {
+    addStar(input: { starrableId: $starrableId }) {
+      clientMutationId
+      starrable {
+        stargazerCount
+        id
+        viewerHasStarred
+        __typename
+      }
+    }
+  }
+`;
+
+export const SearchRemoveStarMutation = graphql`
+  mutation SearchRemoveStarMutation($starrableId: ID = "") {
+    removeStar(input: { starrableId: $starrableId }) {
+      clientMutationId
+      starrable {
+        id
+        stargazerCount
+        viewerHasStarred
+      }
+    }
+  }
+`;

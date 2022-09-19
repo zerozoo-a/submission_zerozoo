@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<be76e3ae48c8526b70752c3bd858e970>>
+ * @generated SignedSource<<6b314ecaa0db60b5ffdf3515d2d2209e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -72,7 +72,14 @@ v1 = [
     "name": "type",
     "variableName": "type"
   }
-];
+],
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -129,6 +136,7 @@ return {
                   {
                     "kind": "InlineFragment",
                     "selections": [
+                      (v2/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -149,6 +157,13 @@ return {
                         "kind": "ScalarField",
                         "name": "stargazerCount",
                         "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "viewerHasStarred",
+                        "storageKey": null
                       }
                     ],
                     "type": "Repository",
@@ -157,13 +172,7 @@ return {
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "id",
-                        "storageKey": null
-                      }
+                      (v2/*: any*/)
                     ],
                     "type": "Node",
                     "abstractKey": "__isNode"
@@ -238,16 +247,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "c647ef5f59558ff16b289f2dc7d9e452",
+    "cacheID": "b8474fdc6e4a9b57c487f944ed40bed0",
     "id": null,
     "metadata": {},
     "name": "SearchPaginationQuery",
     "operationKind": "query",
-    "text": "query SearchPaginationQuery(\n  $after: String\n  $before: String\n  $first: Int = 5\n  $last: Int\n  $query: String = \"\"\n  $type: SearchType = REPOSITORY\n) {\n  ...SearchRepoResults_repos_2O64vi\n}\n\nfragment SearchRepoResults_repos_2O64vi on Query {\n  search(query: $query, after: $after, first: $first, before: $before, last: $last, type: $type) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          name\n          description\n          stargazerCount\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
+    "text": "query SearchPaginationQuery(\n  $after: String\n  $before: String\n  $first: Int = 5\n  $last: Int\n  $query: String = \"\"\n  $type: SearchType = REPOSITORY\n) {\n  ...SearchRepoResults_repos_2O64vi\n}\n\nfragment SearchRepoResults_repos_2O64vi on Query {\n  search(query: $query, after: $after, first: $first, before: $before, last: $last, type: $type) {\n    edges {\n      node {\n        __typename\n        ... on Repository {\n          id\n          name\n          description\n          stargazerCount\n          viewerHasStarred\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      cursor\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "6e6adc103f72034259aa688da6274c6c";
+node.hash = "2ac7aca970e87b45757cd51da558cfa4";
 
 module.exports = node;

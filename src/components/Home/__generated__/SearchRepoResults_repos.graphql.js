@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0af04e9d052fb86a1f6786b9dabdc49c>>
+ * @generated SignedSource<<569a1cc77608b4bc2452194ca1309da6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -115,6 +115,13 @@ return {
                       "alias": null,
                       "args": null,
                       "kind": "ScalarField",
+                      "name": "id",
+                      "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
                       "name": "name",
                       "storageKey": null
                     },
@@ -130,6 +137,13 @@ return {
                       "args": null,
                       "kind": "ScalarField",
                       "name": "stargazerCount",
+                      "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
+                      "name": "viewerHasStarred",
                       "storageKey": null
                     }
                   ],
@@ -204,6 +218,6 @@ return {
 };
 })();
 
-node.hash = "6e6adc103f72034259aa688da6274c6c";
+node.hash = "2ac7aca970e87b45757cd51da558cfa4";
 
 module.exports = node;
