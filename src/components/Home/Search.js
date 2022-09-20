@@ -30,7 +30,7 @@ export function Search() {
   const [queryRef, loadQuery, disposeQuery] =
     useQueryLoader<SearchRepoQueryType>(SearchRepoQuery);
 
-  /** loadQuery 초기화, disposeQuery로 cleanup */
+  /** loadQuery 초기화를 통해 ref 생성, disposeQuery로 cleanup */
   useEffect(() => {
     loadQuery({});
     return () => {
@@ -40,7 +40,6 @@ export function Search() {
 
   return (
     <div className={"prose lg:prose-xl"}>
-      <h2 className={"divide-x"}>Search Github Repository</h2>
       {queryRef && (
         <Suspense fallback={<Loading />}>
           <SearchRepoResults
@@ -71,12 +70,20 @@ function SearchRepoResults({ searchQuery, searchRef }) {
     refetch({ query: search });
   };
 
+  const reset = () => {
+    refetch({ query: "" });
+    setSearch("");
+  };
+
   const {
     search: { edges },
   } = data;
 
   return (
-    <div className={"bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"}>
+    <div className={"bg-white shadow-md rounded px-8 mt-6 pb-8 mb-4"}>
+      <h2 onClick={reset} className={"divide-x cursor-pointer"}>
+        Search Github Repository
+      </h2>
       <form onSubmit={handleOnSubmit}>
         <div className={"mb-4"}>
           <label
@@ -94,6 +101,7 @@ function SearchRepoResults({ searchQuery, searchRef }) {
               "shadow appearance-none w-4/6 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             }
             onChange={(e) => setSearch(e.target.value)}
+            value={search}
           />
           <input className={submitButtonStyle()} type="submit" />
         </div>
