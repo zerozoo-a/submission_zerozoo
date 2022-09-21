@@ -1,11 +1,14 @@
 /* @flow */
 import {
+  useLazyLoadQuery,
   useMutation,
   usePaginationFragment,
   usePreloadedQuery,
   useQueryLoader,
 } from "react-relay";
 import { Suspense, useCallback, useEffect, useState } from "react";
+
+import { StarButton } from "./StarButton";
 
 /** queries */
 import SearchRepoQuery from "./__generated__/SearchRepoQuery.graphql";
@@ -98,7 +101,11 @@ function SearchRepoResults({ searchQuery, searchRef }) {
             id={"searchGitHubRepository"}
             type="text"
             className={
-              "shadow appearance-none w-4/6 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              "shadow appearance-none " +
+              "w-4/6 border rounded " +
+              "py-2 px-3 text-gray-700 " +
+              "leading-tight focus:outline-none " +
+              "focus:shadow-outline"
             }
             onChange={(e) => setSearch(e.target.value)}
             value={search}
@@ -123,50 +130,6 @@ function SearchRepoResults({ searchQuery, searchRef }) {
 }
 
 function SpreadEdges({ edges }) {
-  const [selectedRepoId, setSelectedRepoId] = useState("");
-  const [commitToAddStar, isInFlightToAddStar] = useMutation(
-    SearchAddStarMutation
-  );
-  const [commitToRemoveStar, isInFlightToRemoveStar] = useMutation(
-    SearchRemoveStarMutation
-  );
-
-  const handleOnClick = (starrableId, viewerHasStarred) => {
-    setSelectedRepoId(starrableId);
-
-    switch (!viewerHasStarred) {
-      case true:
-        commitToAddStar({
-          variables: {
-            starrableId,
-          },
-          onError(error) {
-            console.error("ERROR OCCURRED! in add star", error);
-          },
-          onCompleted(data) {
-            console.log("onCompleted!", data);
-          },
-        });
-
-        return;
-      case false:
-        commitToRemoveStar({
-          variables: {
-            starrableId,
-          },
-          onError(error) {
-            console.error("ERROR OCCURRED! in add star", error);
-          },
-          onCompleted(data) {
-            console.log("onCompleted!", data);
-          },
-        });
-        return;
-      default:
-        return;
-    }
-  };
-
   return edges.map((edge, index) => {
     const {
       node: { id, cursor, name, description, stargazerCount, viewerHasStarred },
@@ -177,18 +140,12 @@ function SpreadEdges({ edges }) {
         <div>
           <div className={"font-bold py-4"}>{name}</div>
           <div className={"py-4"}>{description}</div>
-          {(isInFlightToRemoveStar || isInFlightToAddStar) &&
-          selectedRepoId === id ? (
-            <Loading />
-          ) : (
-            <button
-              className={buttonStyle(viewerHasStarred)}
-              onClick={() => handleOnClick(id, viewerHasStarred)}
-            >
-              ⭐️&nbsp;&nbsp; {stargazerCount}{" "}
-              {viewerHasStarred ? "starred!" : ""}
-            </button>
-          )}
+          <StarButton
+            id={id}
+            name={name}
+            stargazerCount={stargazerCount}
+            viewerHasStarred={viewerHasStarred}
+          />
         </div>
       </div>
     );
